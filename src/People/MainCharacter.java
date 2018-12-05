@@ -4,9 +4,9 @@ package People;
  * Person represents the player as they move through the game.
  */
 public class MainCharacter {
-    String firstName;
-    String familyName;
-    int xLoc, yLoc;
+    private String firstName;
+    private String familyName;
+    private int xLoc, yLoc;
 
 
     public int getxLoc() {

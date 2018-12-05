@@ -1,16 +1,12 @@
 package Game;
 
 import People.MainCharacter;
-import People.MainCharacter;
-import Rooms.NewRoom;
+import Rooms.GameRoom;
 import Rooms.Room;
-import Rooms.WinningRoom;
 
 import java.util.Scanner;
 
 public class Runner {
-
-
     private static boolean gameOn = true;
 
     public static void main(String[] args)
@@ -27,7 +23,8 @@ public class Runner {
         }
 
 
-        //Create a random winning room.
+        //Create a random GameRoom.
+        GameRoom pokerRoom = new GameRoom((int)Math.random() * 10,(int)Math.random() * 10);
         //Setup player 1 and the input scanner
         People.MainCharacter player1 = new MainCharacter("FirstName", "FamilyName", 0,0);
         building[0][0].enterRoom(player1);
