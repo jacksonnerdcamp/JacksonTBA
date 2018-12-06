@@ -24,11 +24,15 @@ public class Runner {
 
 
         //Create a random GameRoom.
-        GameRoom pokerRoom = new GameRoom((int)Math.random() * 10,(int)Math.random() * 10);
+        GameRoom pokerRoom = new GameRoom((int)(Math.random() * 10),(int)(Math.random() * 10));
         //Setup player 1 and the input scanner
-        People.MainCharacter player1 = new MainCharacter("FirstName", "FamilyName", 0,0);
-        building[0][0].enterRoom(player1);
+        String firstName = "";
+        String lastName = "";
         Scanner in = new Scanner(System.in);
+        System.out.println("Enter first name: ");
+        firstName = in.nextLine();
+        People.MainCharacter player1 = new MainCharacter(firstName, "sd", 0,0);
+        building[0][0].enterRoom(player1);
         while(gameOn)
         {
             System.out.println("Where would you like to move? (Choose N, S, E, W)");
