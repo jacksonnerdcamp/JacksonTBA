@@ -26,11 +26,15 @@ public class Runner {
         //Create a random GameRoom.
         GameRoom pokerRoom = new GameRoom((int)(Math.random() * 10),(int)(Math.random() * 10));
         //Setup player 1 and the input scanner
-        String firstName = "";
-        String lastName = "";
+        String firstName;
+        String lastName;
         Scanner in = new Scanner(System.in);
         System.out.println("Enter first name: ");
         firstName = in.nextLine();
+        System.out.println("Enter your last name: ");
+        lastName = in.nextLine();
+        System.out.println("Hi, " + firstName + " " + lastName + ", type Start to begin");
+        in.nextLine();
         People.MainCharacter player1 = new MainCharacter(firstName, "sd", 0,0);
         building[0][0].enterRoom(player1);
         while(gameOn)
@@ -39,6 +43,20 @@ public class Runner {
             String move = in.nextLine();
             if(validMove(move, player1, building))
             {
+                for(int i = 0; i < building[i].length; i++)
+                {
+                    for(int n = 0; n < building.length; n++)
+                    {
+                        if(n == player1.getxLoc() && i == player1.getyLoc())
+                        {
+                            System.out.print("[p1]");
+                        }
+                        else
+                        {
+                            System.out.print("[  ]");
+                        }
+                    }
+                }
                 System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
 
             }
