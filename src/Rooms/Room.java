@@ -11,7 +11,14 @@ public class Room {
         xLoc = x;
         yLoc = y;
     }
-
+    public int getxLoc()
+    {
+        return xLoc;
+    }
+    public int getyLoc()
+    {
+        return yLoc;
+    }
     /**
      * Method controls the results when a person enters this room.
      * @param x the Person entering

@@ -10,10 +10,10 @@ public class GameRoom extends Room {
         super(x,y);
     }
     @Override
-    public void enterRoom(MainCharacter object) {
+    public void enterRoom(MainCharacter player1) {
         occupied = true;
-        object.setxLoc(this.xLoc);
-        object.setyLoc(this.yLoc);
+        player1.setxLoc(this.xLoc);
+        player1.setyLoc(this.yLoc);
         System.out.println("This is the game room! Play a game and you can win a prize.");
     }
 }

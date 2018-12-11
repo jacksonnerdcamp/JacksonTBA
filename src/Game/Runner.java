@@ -24,7 +24,9 @@ public class Runner {
 
 
         //Create a random GameRoom.
-        GameRoom pokerRoom = new GameRoom((int)(Math.random() * 10),(int)(Math.random() * 10));
+        GameRoom pokerRoom = new GameRoom((int)(Math.random() * 5),(int)(Math.random() * 5));
+        System.out.println(pokerRoom.getyLoc());
+        System.out.println(pokerRoom.getxLoc());
         //Setup player 1 and the input scanner
         String firstName;
         String lastName;
@@ -35,7 +37,7 @@ public class Runner {
         lastName = in.nextLine();
         System.out.println("Hi, " + firstName + " " + lastName + ", type Start to begin");
         in.nextLine();
-        People.MainCharacter player1 = new MainCharacter(firstName, "sd", 0,0);
+        People.MainCharacter player1 = new MainCharacter(firstName, lastName, 0,0);
         building[0][0].enterRoom(player1);
         while(gameOn)
         {
@@ -43,19 +45,28 @@ public class Runner {
             String move = in.nextLine();
             if(validMove(move, player1, building))
             {
-                for(int i = 0; i < building[i].length; i++)
+                //this is the method for printing a board.
+                int n = 0;
+                for(int i = 0; i < building[i].length - 1; i++)
                 {
-                    for(int n = 0; n < building.length; n++)
+                    while(n < building.length)
                     {
-                        if(n == player1.getxLoc() && i == player1.getyLoc())
+                        if(i == player1.getxLoc() && n == player1.getyLoc())
                         {
                             System.out.print("[p1]");
+                        }
+                        else if(i == pokerRoom.getxLoc() && n == pokerRoom.getyLoc())
+                        {
+                            System.out.print("[pr]");
                         }
                         else
                         {
                             System.out.print("[  ]");
                         }
+                        n++;
                     }
+                    n = 0;
+                    System.out.println();
                 }
                 System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
 
