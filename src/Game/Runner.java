@@ -47,7 +47,7 @@ public class Runner {
             {
                 //this is the method for printing a board.
                 int n = 0;
-                for(int i = 0; i < building[i].length - 1; i++)
+                for(int i = 0; i < building[n].length; i++)
                 {
                     while(n < building.length)
                     {
