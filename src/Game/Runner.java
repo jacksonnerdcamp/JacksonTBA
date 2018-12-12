@@ -3,7 +3,6 @@ package Game;
 import People.MainCharacter;
 import Rooms.GameRoom;
 import Rooms.Room;
-
 import java.util.Scanner;
 
 public class Runner {
@@ -11,14 +10,14 @@ public class Runner {
 
     public static void main(String[] args)
     {
-        Room[][] building = new Room[5][5];
+        Room[][] map = new Room[5][5];
 
-        //Fill the building with normal rooms
-        for (int x = 0; x<building.length; x++)
+        //Fill the map with normal rooms
+        for (int x = 0; x<map.length; x++)
         {
-            for (int y = 0; y < building[x].length; y++)
+            for (int y = 0; y < map[x].length; y++)
             {
-                building[x][y] = new Room(x,y);
+                map[x][y] = new Room(x,y);
             }
         }
 
@@ -38,37 +37,15 @@ public class Runner {
         System.out.println("Hi, " + firstName + " " + lastName + ", type Start to begin");
         in.nextLine();
         People.MainCharacter player1 = new MainCharacter(firstName, lastName, 0,0);
-        building[0][0].enterRoom(player1);
+        map[0][0].enterRoom(player1);
         while(gameOn)
         {
             System.out.println("Where would you like to move? (Choose N, S, E, W)");
             String move = in.nextLine();
-            if(validMove(move, player1, building))
+            if(validMove(move, player1, map))
             {
-                //this is the method for printing a board.
-                int n = 0;
-                for(int i = 0; i < building[n].length; i++)
-                {
-                    while(n < building.length)
-                    {
-                        if(i == player1.getxLoc() && n == player1.getyLoc())
-                        {
-                            System.out.print("[p1]");
-                        }
-                        else if(i == pokerRoom.getxLoc() && n == pokerRoom.getyLoc())
-                        {
-                            System.out.print("[pr]");
-                        }
-                        else
-                        {
-                            System.out.print("[  ]");
-                        }
-                        n++;
-                    }
-                    n = 0;
-                    System.out.println();
-                }
-                System.out.println("Your coordinates: row = " + player1.getxLoc() + " col = " + player1.getyLoc());
+                map[player1.getxLoc()][player1.getyLoc()].enterRoom(player1);
+                printBoard(player1, pokerRoom, map);
 
             }
             else {
@@ -142,6 +119,35 @@ public class Runner {
 
         }
         return true;
+    }
+    public static void printBoard(MainCharacter player1, GameRoom pokerRoom, Room[][] map)
+    {
+        int n = 0;
+        for(int i = 0; i < map[n].length; i++)
+        {
+            while(n < map.length)
+            {
+                if(i == player1.getxLoc() && n == player1.getyLoc())
+                {
+                    System.out.print("[p1]");
+                }
+                else if(i == pokerRoom.getxLoc() && n == pokerRoom.getyLoc())
+                {
+                    System.out.print("[pr]");
+                }
+                else
+                {
+                    System.out.print("[  ]");
+                }
+                if(i == player1.getxLoc() && n == player1.getyLoc() && i == pokerRoom.getxLoc() && n == pokerRoom.getyLoc())
+                {
+                    //This will start the poker room
+                }
+                n++;
+            }
+            n = 0;
+            System.out.println();
+        }
     }
     public static void gameOff()
     {
