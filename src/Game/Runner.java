@@ -142,6 +142,7 @@ public class Runner {
                 if(i == player1.getxLoc() && n == player1.getyLoc() && i == pokerRoom.getxLoc() && n == pokerRoom.getyLoc())
                 {
                     //This will start the poker room
+
                 }
                 n++;
             }
