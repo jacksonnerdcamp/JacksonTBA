@@ -23,7 +23,7 @@ public class Runner {
 
 
         //Create a random GameRoom.
-        GameRoom pokerRoom = new GameRoom((int)(Math.random() * 5),(int)(Math.random() * 5));
+        GameRoom pokerRoom = new GameRoom((int)(Math.random() * 5 + 1),(int)(Math.random() * 5 + 1));
         System.out.println(pokerRoom.getyLoc());
         System.out.println(pokerRoom.getxLoc());
         //Setup player 1 and the input scanner
@@ -122,6 +122,7 @@ public class Runner {
     }
     public static void printBoard(MainCharacter player1, GameRoom pokerRoom, Room[][] map)
     {
+        boolean diceActivator = false;
         int n = 0;
         for(int i = 0; i < map[n].length; i++)
         {
@@ -142,12 +143,16 @@ public class Runner {
                 if(i == player1.getxLoc() && n == player1.getyLoc() && i == pokerRoom.getxLoc() && n == pokerRoom.getyLoc())
                 {
                     //This will start the poker room
-
+                    diceActivator = true;
                 }
                 n++;
             }
             n = 0;
             System.out.println();
+        }
+        if(diceActivator)
+        {
+            pokerRoom.startGame();
         }
     }
     public static void gameOff()

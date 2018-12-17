@@ -3,9 +3,8 @@ package Rooms;
 import People.MainCharacter;
 
 public class Room {
-    boolean occupied = false;
     int xLoc,yLoc;
-
+    boolean occupied = false;
     public Room(int x, int y)
     {
         xLoc = x;

@@ -14,6 +14,7 @@ public class GameRoom extends Room {
     boolean wonGame = false;
     public boolean startGame()
     {
+        System.out.println();
         int[] yourDice = new int[2];
         int[] npcDice = new int[2];
         yourDice[0] = (int)(Math.random() * 5 + 1);
