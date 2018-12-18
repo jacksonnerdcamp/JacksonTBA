@@ -3,6 +3,7 @@ package Rooms;
 import People.MainCharacter;
 
 public class Room {
+    MainCharacter occupant;
     int xLoc,yLoc;
     boolean occupied = false;
     public Room(int x, int y)

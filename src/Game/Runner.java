@@ -13,7 +13,7 @@ public class Runner {
         Room[][] map = new Room[5][5];
 
         //Fill the map with normal rooms
-        for (int x = 0; x<map.length; x++)
+        for (int x = 0; x < map.length; x++)
         {
             for (int y = 0; y < map[x].length; y++)
             {
@@ -23,7 +23,8 @@ public class Runner {
 
 
         //Create a random GameRoom.
-        GameRoom pokerRoom = new GameRoom((int)(Math.random() * 5 + 1),(int)(Math.random() * 5 + 1));
+        GameRoom pokerRoom = new GameRoom((int)(Math.random() * 5),(int)(Math.random() * 5));
+        map[pokerRoom.getxLoc()][pokerRoom.getyLoc()] = pokerRoom;
         System.out.println(pokerRoom.getyLoc());
         System.out.println(pokerRoom.getxLoc());
         //Setup player 1 and the input scanner
@@ -35,18 +36,22 @@ public class Runner {
         System.out.println("Enter your last name: ");
         lastName = in.nextLine();
         System.out.println("Hi, " + firstName + " " + lastName + ", type Start to begin");
-        in.nextLine();
+        String start = in.nextLine();
+        while(!start.equals("Start") && !start.equals("start"))
+        {
+            System.out.println("Just type Start");
+            start = in.nextLine();
+        }
         People.MainCharacter player1 = new MainCharacter(firstName, lastName, 0,0);
         map[0][0].enterRoom(player1);
         while(gameOn)
         {
+            printBoard(player1, pokerRoom, map);
             System.out.println("Where would you like to move? (Choose N, S, E, W)");
             String move = in.nextLine();
             if(validMove(move, player1, map))
             {
                 map[player1.getxLoc()][player1.getyLoc()].enterRoom(player1);
-                printBoard(player1, pokerRoom, map);
-
             }
             else {
                 System.out.println("Please choose a valid move.");
@@ -122,7 +127,7 @@ public class Runner {
     }
     public static void printBoard(MainCharacter player1, GameRoom pokerRoom, Room[][] map)
     {
-        boolean diceActivator = false;
+
         int n = 0;
         for(int i = 0; i < map[n].length; i++)
         {
@@ -140,19 +145,10 @@ public class Runner {
                 {
                     System.out.print("[  ]");
                 }
-                if(i == player1.getxLoc() && n == player1.getyLoc() && i == pokerRoom.getxLoc() && n == pokerRoom.getyLoc())
-                {
-                    //This will start the poker room
-                    diceActivator = true;
-                }
                 n++;
             }
             n = 0;
             System.out.println();
-        }
-        if(diceActivator)
-        {
-            pokerRoom.startGame();
         }
     }
     public static void gameOff()

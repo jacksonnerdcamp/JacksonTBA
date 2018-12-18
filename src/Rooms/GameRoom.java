@@ -5,13 +5,21 @@ import People.MainCharacter;
 import Rooms.Room;
 
 public class GameRoom extends Room {
+    private String roomName = "GameRoom";
     public GameRoom(int x, int y)
     {
         super(x,y);
     }
 
+    @Override
+    public void enterRoom(MainCharacter x)
+    {
+        occupant = x;
+        x.setxLoc(this.xLoc);
+        x.setyLoc(this.yLoc);
+        this.startGame();
+    }
     //methods
-    boolean wonGame = false;
     public boolean startGame()
     {
         System.out.println();
@@ -33,36 +41,42 @@ public class GameRoom extends Room {
                     System.out.println("|     |");
                     System.out.println("|  o  |");
                     System.out.println("|     |");
+                    System.out.println();
                 }
                 else if (setHand[i] == 2)
                 {
                     System.out.println("|o    |");
                     System.out.println("|     |");
                     System.out.println("|    o|");
+                    System.out.println();
                 }
                 else if (setHand[i] == 3)
                 {
                     System.out.println("|o    |");
                     System.out.println("|  o  |");
                     System.out.println("|    o|");
+                    System.out.println();
                 }
                 else if (setHand[i] == 4)
                 {
                     System.out.println("|o   o|");
                     System.out.println("|     |");
                     System.out.println("|o   o|");
+                    System.out.println();
                 }
                 else if (setHand[i] == 5)
                 {
                     System.out.println("|o   o|");
                     System.out.println("|  o  |");
                     System.out.println("|o   o|");
+                    System.out.println();
                 }
                 else if (setHand[i] == 6)
                 {
                     System.out.println("|o   o|");
                     System.out.println("|o   o|");
                     System.out.println("|o   o|");
+                    System.out.println();
                 }
             }
             System.out.println("npc's roll:");
@@ -76,6 +90,11 @@ public class GameRoom extends Room {
         else if(yourDice[0] + yourDice[1] < npcDice[0] + npcDice[1])
         {
             System.out.println("You lost. Better luck next time.");
+        }
+        else
+        {
+            System.out.println("It's a tie! Rematching...");
+            startGame();
         }
         return true;
     }

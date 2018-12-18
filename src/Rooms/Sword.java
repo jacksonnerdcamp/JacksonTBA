@@ -14,5 +14,6 @@ public class Sword extends Room{
         occupant = x;
         x.setxLoc(this.xLoc);
         x.setyLoc(this.yLoc);
+
     }
 }
